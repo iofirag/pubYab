@@ -1,0 +1,16 @@
+<h1><pre ng-bind="$ctrl | json"></pre></h1>
+
+<div class="minimizer" minimizer
+     ng-class="{true:'addAnimationOpen', false:'addAnimationClose'}[$ctrl.status]"
+     ng-click="$ctrl.openWindow()">
+
+    <p class="minimizer_p" ng-bind="$ctrl.property.name" ng-class="{true:'minimizer_p_open', false:'minimizer_p_close'}[$ctrl.status]"></p>
+    <p class="minimizer_p_sub" ng-bind="$ctrl.property.second"></p>
+    <hr class="hr_pubyub" ng-show="$ctrl.property.hr"/>
+</div>
+
+
+
+
+
+

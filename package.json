@@ -1,0 +1,27 @@
+{
+  "name": "component",
+  "version": "1.0.0",
+  "description": "angular component",
+  "main": "index.js",
+  "dependencies": {
+    "angular": "^1.6.4",
+    "angular-animate": "^1.6.4",
+    "gulp": "^3.9.1",
+    "gulp-less": "^3.3.0"
+  },
+  "devDependencies": {
+    "babel-preset-es2015": "^6.24.1",
+    "browser-sync": "^2.18.8",
+    "gulp-babel": "^6.1.2",
+    "gulp-sass": "^3.1.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "component",
+    "angular"
+  ],
+  "author": "Omri lugasi",
+  "license": "ISC"
+}

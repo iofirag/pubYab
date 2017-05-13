@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>Angular component</title>
+    <script src="node_modules/angular/angular.min.js"></script>
+    <script src="node_modules/angular-animate/angular-animate.min.js"></script>
+    <script src="app.js"></script>
+    <script src="app.controller.js"></script>
+    <script src="component/myFirstComponent/component.app.js"></script>
+    <link rel="stylesheet" href="component/myFirstComponent/css/css.css">
+</head>
+<body ng-controller="home as vm">
+    <magic
+            name="vm.windowName"
+            second="'subName'"
+            uuid="'main'"
+    ></magic>
+
+
+</body>
+</html>
