@@ -33,7 +33,7 @@ function controller($scope){
             throw ('Please provide dialogId in magic \n for example:::\n <div uuid="thisIsId"></div>');
         }
 
-        $scope.$on(INIT_PUBYAV, (e , args)=> {
+        $scope.$on(INIT_PUBYAV, (e , args) => {
             openDataState();
             vm.magic = {
                uuid: args.uuid
