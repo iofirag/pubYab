@@ -4,8 +4,8 @@ function controller($scope){
         const moduleName = 'pubYav';
         const open = moduleName + this.name +' open';
         const close = moduleName + this.name +' close';
-        const self = this;
-        self.property = {};
+        var vm = this;
+
 
         const OPEN_PUBYAV = 'pubYab.open';
         const CLOSE_PUBYAV = 'pubYab.close';
@@ -14,13 +14,13 @@ function controller($scope){
 
 
     //vars
-    var vm = this;
-
+    vm.property = {};
 
 
     //functions
-    this.$onInit = onInit;
-    this.openWindow = openWindow;
+    vm.$onInit = onInit;
+    vm.openWindow = openWindow;
+    vm.closeWindow = closeWindow;
 
 
     /**
@@ -28,8 +28,8 @@ function controller($scope){
      */
     function onInit(){
         console.log('init ready');
-        if(!self.uuid){
-            console.log(self);
+        if(!vm.uuid){
+            console.log(vm);
             throw ('Please provide dialogId in magic \n for example:::\n <div uuid="thisIsId"></div>');
         }
 
@@ -60,11 +60,17 @@ function controller($scope){
     }
 
 
+    function closeWindow(){
+        vm.status =  false ;
+        openDataState();
+        notifyBroadCast(vm.status);
+    }
+
     /**
      * @desc open and close window
      */
     function openWindow(){
-        vm.status = (vm.status) ? false : true;
+        vm.status =  true;
         openDataState();
         notifyBroadCast(vm.status);
     }
@@ -77,12 +83,12 @@ function controller($scope){
      */
     function notifyBroadCast(boolean , init){
         if(init){
-            $scope.$emit(INIT_PUBYAV , {uuid : self.uuid});
+            $scope.$emit(INIT_PUBYAV , {uuid : vm.uuid});
             return;
         }
         var eventName = (boolean) ? OPEN_PUBYAV : CLOSE_PUBYAV;
         var eventMessage = (boolean) ? open : close;
-        $scope.$emit(eventName , {uuid : self.uuid , message: eventMessage , state : boolean});
+        $scope.$emit(eventName , {uuid : vm.uuid , message: eventMessage , state : boolean});
 
     }
 
@@ -92,12 +98,12 @@ function controller($scope){
      */
     function openDataState(){
         if(vm.status) {
-            self.property.name = self.name;
-            self.property.second = self.second;
-            self.property.hr = true;
+            vm.property.name = vm.name;
+            vm.property.second = vm.second;
+            vm.property.hr = true;
         }else
-            self.property = {
-                name: self.name
+            vm.property = {
+                name: vm.name
             }
     }
 

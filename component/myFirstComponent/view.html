@@ -7,6 +7,10 @@
     <p class="minimizer_p" ng-bind="$ctrl.property.name" ng-class="{true:'minimizer_p_open', false:'minimizer_p_close'}[$ctrl.status]"></p>
     <p class="minimizer_p_sub" ng-bind="$ctrl.property.second"></p>
     <hr class="hr_pubyub" ng-show="$ctrl.property.hr"/>
+    <div class="toolTip" ng-show="$ctrl.property.hr">
+        <div ng-include="'component/myFirstComponent/icon/minimize.svg'" ng-click="$ctrl.closeWindow()"></div>
+        <div ng-include="'component/myFirstComponent/icon/close.svg'"></div>
+    </div>
 </div>
 
 
