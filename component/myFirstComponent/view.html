@@ -1,16 +1,19 @@
-<h1><pre ng-bind="$ctrl | json"></pre></h1>
+<pre style="font-size:18px;width: 27%;padding: 15px;font-weight: bold" ng-bind="$ctrl | json"></pre>
 
 <div class="minimizer" minimizer
      ng-class="{true:'addAnimationOpen', false:'addAnimationClose'}[$ctrl.status]"
-     ng-click="$ctrl.openWindow()">
+     ng-click="$ctrl.openWindow($event)">
 
     <p class="minimizer_p" ng-bind="$ctrl.property.name" ng-class="{true:'minimizer_p_open', false:'minimizer_p_close'}[$ctrl.status]"></p>
     <p class="minimizer_p_sub" ng-bind="$ctrl.property.second"></p>
     <hr class="hr_pubyub" ng-show="$ctrl.property.hr"/>
     <div class="toolTip" ng-show="$ctrl.property.hr">
-        <div ng-include="'component/myFirstComponent/icon/minimize.svg'" ng-click="$ctrl.closeWindow()"></div>
+        <div ng-include="'component/myFirstComponent/icon/minimize.svg'"  ng-click="$ctrl.closeWindow()"></div>
         <div ng-include="'component/myFirstComponent/icon/close.svg'"></div>
     </div>
+
+    <div ng-if="$ctrl.property.content" ng-include="$ctrl.property.content" class="container__"></div>
+
 </div>
 
 

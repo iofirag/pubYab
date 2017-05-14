@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
 
-$purple : #9d3a7a;
+$purple : #134347;
 
 .minimizer{
   background: $purple;
@@ -22,6 +22,7 @@ $purple : #9d3a7a;
   animation-duration: 1s;
   animation: openModalKeyFrame 1.0s forwards;
   -webkit-animation: openModalKeyFrame 1.0s forwards;
+  border-radius: 7px;
 }
 
 .addAnimationClose{
@@ -30,6 +31,7 @@ $purple : #9d3a7a;
   animation-duration: 1s;
   animation: closeModalKeyFrame 1.0s forwards;
   -webkit-animation: closeModalKeyFrame 1.0s forwards;
+  border-radius: 0px;
 }
 
 .minimizer_p{
@@ -40,7 +42,7 @@ $purple : #9d3a7a;
 
 .hr_pubyub{
   color: white;
-  width: 80%;
+  width: 96%;
   margin-left: 2%;
   margin-top: -1vh;
 }
@@ -68,13 +70,21 @@ $purple : #9d3a7a;
   text-align: left;
   margin-left: 2%;
   font-size: 25px;
-
 }
 
 .minimizer_p_close{
   font-family: 'Source Sans Pro', sans-serif;
   text-align: center;
 }
+
+.container__{
+  max-height: 32vh;
+  height: 33vh;
+  max-width: 100%;
+  overflow-y: auto;
+}
+
+
 
 
 @keyframes openModalKeyFrame {

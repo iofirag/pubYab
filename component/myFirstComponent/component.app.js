@@ -1,11 +1,10 @@
 function controller($scope){
 
     //const
-        const moduleName = 'pubYav';
-        const open = moduleName + this.name +' open';
-        const close = moduleName + this.name +' close';
         var vm = this;
 
+
+        const moduleName = 'pubYav';
 
         const OPEN_PUBYAV = 'pubYab.open';
         const CLOSE_PUBYAV = 'pubYab.close';
@@ -32,7 +31,6 @@ function controller($scope){
             console.log(vm);
             throw ('Please provide dialogId in magic \n for example:::\n <div uuid="thisIsId"></div>');
         }
-
         $scope.$on(INIT_PUBYAV, (e , args) => {
             openDataState();
             vm.magic = {
@@ -69,7 +67,8 @@ function controller($scope){
     /**
      * @desc open and close window
      */
-    function openWindow(){
+    function openWindow(e){
+        if(e.target.nodeName === 'path' || e.target.nodeName === 'svg') return;
         vm.status =  true;
         openDataState();
         notifyBroadCast(vm.status);
@@ -87,7 +86,7 @@ function controller($scope){
             return;
         }
         var eventName = (boolean) ? OPEN_PUBYAV : CLOSE_PUBYAV;
-        var eventMessage = (boolean) ? open : close;
+        var eventMessage = (boolean) ? moduleName +' '+ vm.name +' open' : moduleName +' '+ vm.name +' close';
         $scope.$emit(eventName , {uuid : vm.uuid , message: eventMessage , state : boolean});
 
     }
@@ -100,13 +99,11 @@ function controller($scope){
         if(vm.status) {
             vm.property.name = vm.name;
             vm.property.second = vm.second;
+            vm.property.content = vm.content;
             vm.property.hr = true;
         }else
-            vm.property = {
-                name: vm.name
-            }
+            vm.property = {name: vm.name}
     }
-
 }
 
 
@@ -115,12 +112,12 @@ angular.module('app')
         bindings: {
             name : '<',
             uuid: '<',
-            second: '<'
+            second: '<',
+            content:'<'
         },
 
         templateUrl:'component/myFirstComponent/view.html',
         controller : controller
-
     });
 
 
