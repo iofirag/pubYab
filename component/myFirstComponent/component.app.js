@@ -1,16 +1,13 @@
 function controller($scope){
 
     //const
-        var vm = this;
-
-
+        let vm = this;
+        let loggerManager;
         const moduleName = 'pubYav';
 
         const OPEN_PUBYAV = 'pubYab.open';
         const CLOSE_PUBYAV = 'pubYab.close';
         const INIT_PUBYAV = 'pubYab.init';
-
-
 
     //vars
     vm.property = {};
@@ -26,11 +23,12 @@ function controller($scope){
      * @desc on initiation
      */
     function onInit(){
-        console.log('init ready');
         if(!vm.uuid){
-            console.log(vm);
             throw ('Please provide dialogId in magic \n for example:::\n <div uuid="thisIsId"></div>');
         }
+
+        loggerManager = new logger(vm.debug);
+
         $scope.$on(INIT_PUBYAV, (e , args) => {
             openDataState();
             vm.magic = {
@@ -53,7 +51,6 @@ function controller($scope){
             state : args.state
         };
     })
-
         notifyBroadCast(false , true);
     }
 
@@ -87,8 +84,8 @@ function controller($scope){
         }
         var eventName = (boolean) ? OPEN_PUBYAV : CLOSE_PUBYAV;
         var eventMessage = (boolean) ? moduleName +' '+ vm.name +' open' : moduleName +' '+ vm.name +' close';
+        loggerManager.log(eventMessage);
         $scope.$emit(eventName , {uuid : vm.uuid , message: eventMessage , state : boolean});
-
     }
 
 
@@ -107,17 +104,32 @@ function controller($scope){
 }
 
 
+
+
+class logger{
+
+    constructor(debug = true){
+        this.debug = debug;
+    }
+
+    log(msg){
+        if(this.debug) console.debug(msg);
+    }
+}
+
+
 angular.module('app')
     .component('magic' , {
         bindings: {
             name : '<',
             uuid: '<',
             second: '<',
-            content:'<'
+            content:'<',
+            debug : '<'
         },
-
         templateUrl:'component/myFirstComponent/view.html',
         controller : controller
     });
+
 
 
